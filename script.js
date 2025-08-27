@@ -183,11 +183,3 @@ function initScrollEvents() {
         });
     });
 }
-// ADICIONE ESTE EVENT LISTENER PARA O BOTÃO PARTICIPAR
-btnParticipate.addEventListener('click', function() {
-    // Marcar que o convite foi aceito no sessionStorage
-    sessionStorage.setItem('conviteAceito', 'true');
-    
-    // Redirecionar para a página principal
-    window.location.href = 'main.html'; // Altere para o nome do seu arquivo principal
-});
