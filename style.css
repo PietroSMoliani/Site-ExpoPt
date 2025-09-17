@@ -1,12 +1,12 @@
-/* Variáveis de cores e estilos */
+/* Variáveis de cores e estilos atualizadas para o tema água */
 :root {
-    --arctic-blue: #a8d0e6;
-    --ice-blue: #d4f1f9;
-    --glacier-blue: #78c6e7;
-    --deep-blue: #3498db;
-    --dark-blue: #1a5276;
-    --warming-orange: #ff9a76;
-    --warming-red: #ff6b6b;
+    --water-blue: #4a90e2;
+    --light-water: #87ceeb;
+    --fresh-water: #a8d0e6;
+    --deep-water: #1a5276;
+    --dark-water: #0a2a43;
+    --crisis-orange: #ff9a76;
+    --crisis-red: #ff6b6b;
     --white: #ffffff;
     --dark-text: #2c3e50;
     --transition-slow: 0.5s ease;
@@ -26,14 +26,14 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, #0a2a43 0%, #1a5276 100%);
+    background: linear-gradient(135deg, var(--dark-water) 0%, var(--deep-water) 100%);
     color: var(--white);
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* Animação de partículas de gelo */
-.ice-particles {
+/* Animação de partículas de água */
+.water-particles {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,13 +43,13 @@ body {
     z-index: 1;
 }
 
-.ice-particle {
+.water-particle {
     position: absolute;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     opacity: 0;
     animation: fall linear infinite;
-    box-shadow: 0 0 10px rgba(168, 208, 230, 0.8);
+    box-shadow: 0 0 10px rgba(135, 206, 235, 0.8);
 }
 
 @keyframes fall {
@@ -93,17 +93,17 @@ header.scrolled {
 h1 {
     font-size: 2.8rem;
     margin-bottom: 0.5rem;
-    background: linear-gradient(to right, var(--ice-blue), var(--glacier-blue));
+    background: linear-gradient(to right, var(--light-water), var(--water-blue));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 15px rgba(168, 208, 230, 0.5);
+    text-shadow: 0 0 15px rgba(135, 206, 235, 0.5);
 }
 
 .event-theme {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    color: var(--ice-blue);
+    color: var(--light-water);
 }
 
 nav ul {
@@ -115,7 +115,7 @@ nav ul {
 }
 
 nav a {
-    color: var(--ice-blue);
+    color: var(--light-water);
     text-decoration: none;
     font-weight: bold;
     padding: 0.7rem 1.5rem;
@@ -155,7 +155,7 @@ section::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23a8d0e6' fill-opacity='0.1' d='M0,128L48,138.7C96,149,192,171,288,186.7C384,203,480,213,576,192C672,171,768,117,864,117.3C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234a90e2' fill-opacity='0.1' d='M0,128L48,138.7C96,149,192,171,288,186.7C384,203,480,213,576,192C672,171,768,117,864,117.3C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
     background-size: cover;
     opacity: 0.3;
     z-index: -1;
@@ -177,7 +177,7 @@ h2::after {
     transform: translateX(-50%);
     width: 150px;
     height: 4px;
-    background: linear-gradient(to right, var(--arctic-blue), var(--deep-blue));
+    background: linear-gradient(to right, var(--light-water), var(--water-blue));
     border-radius: 2px;
 }
 
@@ -197,9 +197,9 @@ h2::after {
     margin-right: auto;
 }
 
-.glacier-icon {
+.water-icon {
     font-size: 4rem;
-    color: var(--ice-blue);
+    color: var(--light-water);
     margin-bottom: 2rem;
     animation: float 3s ease-in-out infinite;
 }
@@ -209,7 +209,7 @@ h2::after {
     50% { transform: translateY(-10px); }
 }
 
-/* Seção de Motivo - Aquecimento Global */
+/* Seção de Motivo - Crise Hídrica */
 .reason {
     background: linear-gradient(135deg, rgba(179, 57, 57, 0.7) 0%, rgba(255, 107, 107, 0.7) 100%);
     text-align: center;
@@ -246,7 +246,7 @@ h2::after {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(to right, var(--warming-orange), var(--warming-red));
+    background: linear-gradient(to right, var(--crisis-orange), var(--crisis-red));
 }
 
 .warming-card:hover {
@@ -258,7 +258,7 @@ h2::after {
     font-size: 2.5rem;
     color: var(--white);
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--warming-orange), var(--warming-red));
+    background: linear-gradient(135deg, var(--crisis-orange), var(--crisis-red));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -294,7 +294,7 @@ h2::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(120, 198, 231, 0.1) 0%, rgba(52, 152, 219, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(26, 82, 118, 0.1) 100%);
     z-index: -1;
 }
 
@@ -306,7 +306,7 @@ h2::after {
 .class-project h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: var(--ice-blue);
+    color: var(--light-water);
     display: flex;
     align-items: center;
     gap: 0.8rem;
@@ -322,6 +322,7 @@ h2::after {
     flex-wrap: wrap;
     gap: 1.5rem;
     margin: 2rem 0;
+    justify-content: center;
 }
 
 .project-media img {
@@ -343,7 +344,7 @@ h2::after {
     padding: 1.5rem;
     border-radius: 10px;
     margin-top: 1.5rem;
-    border-left: 4px solid var(--glacier-blue);
+    border-left: 4px solid var(--water-blue);
 }
 
 /* Seção Interativa */
@@ -352,83 +353,85 @@ h2::after {
     text-align: center;
 }
 
-.comparison-container {
-    max-width: 900px;
-    margin: 3rem auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    position: relative;
-}
-
-.comparison-slider {
-    position: relative;
-    width: 100%;
-    height: 400px;
-}
-
-.comparison-slider img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.slider-handle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 4px;
-    height: 100%;
-    background-color: var(--white);
-    cursor: ew-resize;
-    transform: translateX(-2px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.slider-handle::after {
-    content: "↔";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--white);
-    color: var(--dark-blue);
+.water-calculator {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
     justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin: 3rem 0;
 }
 
-.years {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    color: white;
+.calculator-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
     font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
-.years span {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 15px;
-    borderRadius: 20px;
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+#calculate-btn {
+    background: var(--water-blue);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition-fast);
+    width: 100%;
+}
+
+#calculate-btn:hover {
+    background: var(--deep-water);
+    transform: translateY(-3px);
+}
+
+.calculator-result {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 300px;
+}
+
+.water-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--light-water);
+    margin: 1rem 0;
+}
+
+.water-tips h4 {
+    margin-bottom: 1rem;
+    color: var(--light-water);
+}
+
+.water-tips ul {
+    text-align: left;
+    list-style-position: inside;
+}
+
+.water-tips li {
+    margin-bottom: 0.5rem;
 }
 
 /* Quiz Section */
@@ -484,7 +487,7 @@ h2::after {
 
 /* Footer */
 footer {
-    background: linear-gradient(135deg, var(--dark-blue) 0%, #0a2a43 100%);
+    background: linear-gradient(135deg, var(--deep-water) 0%, var(--dark-water) 100%);
     color: var(--white);
     text-align: center;
     padding: 3rem 2rem;
@@ -500,7 +503,7 @@ footer::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23a8d0e6' fill-opacity='0.1' d='M0,128L48,138.7C96,149,192,171,288,186.7C384,203,480,213,576,192C672,171,768,117,864,117.3C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234a90e2' fill-opacity='0.1' d='M0,128L48,138.7C96,149,192,171,288,186.7C384,203,480,213,576,192C672,171,768,117,864,117.3C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
     background-size: cover;
     opacity: 0.2;
 }
@@ -526,7 +529,7 @@ footer::before {
 }
 
 .social-icons a {
-    color: var(--ice-blue);
+    color: var(--light-water);
     font-size: 1.5rem;
     transition: var(--transition-fast);
 }
@@ -543,7 +546,7 @@ footer::before {
     right: 30px;
     width: 50px;
     height: 50px;
-    background: var(--glacier-blue);
+    background: var(--water-blue);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -563,7 +566,7 @@ footer::before {
 }
 
 .back-to-top:hover {
-    background: var(--deep-blue);
+    background: var(--deep-water);
     transform: translateY(-5px);
 }
 
@@ -590,7 +593,244 @@ footer::before {
         padding: 4rem 1.5rem;
     }
     
-    .comparison-slider {
-        height: 300px;
+    .water-calculator {
+        flex-direction: column;
+        align-items: center;
     }
+    
+    .calculator-form,
+    .calculator-result {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+/* Adicione estas regras ao seu arquivo CSS existente */
+
+/* Animações para a nova seção */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+}
+
+/* Ajustes para a nova seção hero */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 8rem;
+    padding: 0;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(10, 42, 67, 0.7), rgba(26, 82, 118, 0.7)), url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"%3E%3Cpath fill="%234a90e2" d="M0,0 L800,0 L800,600 L0,600 Z"%3E%3C/path%3E%3Cpath fill="%231a5276" d="M0,400 Q200,350 400,400 Q600,450 800,400 L800,600 L0,600 Z"%3E%3C/path%3E%3C/svg%3E');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 1000px;
+    padding: 3rem;
+    background: rgba(10, 42, 67, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, var(--light-water), var(--water-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(135, 206, 235, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--light-water);
+}
+
+.class-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.class-photo {
+    width: 300px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid var(--light-water);
+}
+
+.class-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.class-details {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.class-details h3 {
+    color: var(--light-water);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.water-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    min-width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--light-water);
+    margin-bottom: 0.5rem;
+}
+
+.stat-description {
+    font-size: 1rem;
+}
+
+.hero-cta {
+    margin-top: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--water-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid var(--light-water);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background: var(--deep-water);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .class-info {
+        flex-direction: column;
+    }
+    
+    .class-photo {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+/* Adicione estas regras ao seu CSS existente */
+
+.quiz-option.selected {
+    background: rgba(74, 144, 226, 0.3);
+    border-color: var(--water-blue);
+}
+
+.quiz-option.correct {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: var(--correct-green);
+}
+
+.quiz-option.incorrect {
+    background: rgba(244, 67, 54, 0.3);
+    border-color: var(--incorrect-red);
+}
+
+.quiz-result.correct {
+    background: rgba(76, 175, 80, 0.3);
+    color: #e8f5e9;
+}
+
+.quiz-result.incorrect {
+    background: rgba(244, 67, 54, 0.3);
+    color: #ffebee;
+}
+/* Adicione estas regras ao seu CSS existente */
+
+.quiz-option.selected {
+    background: rgba(74, 144, 226, 0.3);
+    border-color: var(--water-blue);
+}
+
+.quiz-option.correct {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: var(--correct-green);
+}
+
+.quiz-option.incorrect {
+    background: rgba(244, 67, 54, 0.3);
+    border-color: var(--incorrect-red);
+}
+
+.quiz-result.correct {
+    background: rgba(76, 175, 80, 0.3);
+    color: #e8f5e9;
+}
+
+.quiz-result.incorrect {
+    background: rgba(244, 67, 54, 0.3);
+    color: #ffebee;
 }

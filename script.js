@@ -1,185 +1,187 @@
-// Criar animação de partículas de gelo
+// Script para a página com tema de água
 document.addEventListener('DOMContentLoaded', function() {
-    createIceParticles();
-    initComparisonSlider();
-    initQuiz();
-    initScrollEvents();
-});
-
-// Função para criar partículas de gelo
-function createIceParticles() {
-    const particlesContainer = document.querySelector('.ice-particles');
-    const particleCount = 40;
+    // Criar partículas de água
+    createWaterParticles();
     
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('ice-particle');
-        
-        // Tamanho aleatório entre 3 e 8 pixels
-        const size = Math.random() * 5 + 3;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Posição inicial aleatória
-        particle.style.left = `${Math.random() * 100}vw`;
-        
-        // Duração da animação aleatória entre 10 and 30 segundos
-        const animationDuration = Math.random() * 20 + 10;
-        particle.style.animationDuration = `${animationDuration}s`;
-        
-        // Atraso inicial aleatório
-        particle.style.animationDelay = `${Math.random() * 5}s`;
-        
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Inicializar o slider de comparação
-function initComparisonSlider() {
-    const slider = document.querySelector('.comparison-slider');
-    const before = slider.querySelector('.before');
-    const handle = slider.querySelector('.slider-handle');
-    
-    let isMoving = false;
-    
-    // Eventos para desktop
-    handle.addEventListener('mousedown', function() {
-        isMoving = true;
-        handle.style.backgroundColor = '#a8d0e6';
-    });
-    
-    document.addEventListener('mouseup', function() {
-        isMoving = false;
-        handle.style.backgroundColor = '#fff';
-    });
-    
-    document.addEventListener('mousemove', function(e) {
-        if (!isMoving) return;
-        
-        let move = e.clientX - slider.getBoundingClientRect().left;
-        if (move < 0) move = 0;
-        if (move > slider.offsetWidth) move = slider.offsetWidth;
-        
-        const percentage = (move / slider.offsetWidth) * 100;
-        before.style.width = `${percentage}%`;
-        handle.style.left = `${percentage}%`;
-    });
-    
-    // Eventos para mobile
-    handle.addEventListener('touchstart', function() {
-        isMoving = true;
-        handle.style.backgroundColor = '#a8d0e6';
-    });
-    
-    document.addEventListener('touchend', function() {
-        isMoving = false;
-        handle.style.backgroundColor = '#fff';
-    });
-    
-    document.addEventListener('touchmove', function(e) {
-        if (!isMoving) return;
-        
-        const touch = e.touches[0];
-        let move = touch.clientX - slider.getBoundingClientRect().left;
-        if (move < 0) move = 0;
-        if (move > slider.offsetWidth) move = slider.offsetWidth;
-        
-        const percentage = (move / slider.offsetWidth) * 100;
-        before.style.width = `${percentage}%`;
-        handle.style.left = `${percentage}%`;
-    });
-}
-
-// Inicializar o quiz
-function initQuiz() {
-    const options = document.querySelectorAll('.quiz-option');
-    const resultDiv = document.querySelector('.quiz-result');
-    let correctAnswers = 0;
-    let totalQuestions = document.querySelectorAll('.quiz-question').length;
-    
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remover seleções anteriores da mesma pergunta
-            const parentQuestion = this.closest('.quiz-question');
-            parentQuestion.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.style.backgroundColor = '';
-                opt.style.color = '';
-            });
-            
-            // Destacar a opção selecionada
-            if (this.dataset.correct === 'true') {
-                this.style.backgroundColor = '#4caf50';
-                this.style.color = 'white';
-            } else {
-                this.style.backgroundColor = '#f44336';
-                this.style.color = 'white';
-                
-                // Destacar também a resposta correta
-                parentQuestion.querySelector('[data-correct="true"]').style.backgroundColor = '#4caf50';
-                parentQuestion.querySelector('[data-correct="true"]').style.color = 'white';
-            }
-            
-            // Calcular pontuação
-            calculateScore();
-        });
-    });
-    
-    function calculateScore() {
-        correctAnswers = 0;
-        document.querySelectorAll('.quiz-option[data-correct="true"]').forEach(option => {
-            if (option.style.backgroundColor === 'rgb(76, 175, 80)') {
-                correctAnswers++;
-            }
-        });
-        
-        // Exibir resultado
-        resultDiv.textContent = `Você acertou ${correctAnswers} de ${totalQuestions} perguntas!`;
-        resultDiv.style.display = 'block';
-        
-        if (correctAnswers === totalQuestions) {
-            resultDiv.style.backgroundColor = 'rgba(76, 175, 80, 0.3)';
-        } else if (correctAnswers >= totalQuestions / 2) {
-            resultDiv.style.backgroundColor = 'rgba(255, 152, 0, 0.3)';
-        } else {
-            resultDiv.style.backgroundColor = 'rgba(244, 67, 54, 0.3)';
-        }
-    }
-}
-
-// Inicializar eventos de scroll
-function initScrollEvents() {
-    const header = document.getElementById('header');
-    const backToTopButton = document.querySelector('.back-to-top');
-    
+    // Header scroll effect
+    const header = document.querySelector('header');
     window.addEventListener('scroll', function() {
-        // Header scroll effect
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-        
-        // Back to top button
-        if (window.scrollY > 500) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-        
-        // Parallax effect for sections
-        document.querySelectorAll('section').forEach(section => {
-            const speed = 0.5;
-            const yPos = -(window.scrollY * speed);
-            section.style.backgroundPosition = `center ${yPos}px`;
-        });
     });
     
-    // Back to top functionality
-    backToTopButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    // Botão de voltar ao topo
+    const backToTopBtn = document.createElement('a');
+    backToTopBtn.href = '#';
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.innerHTML = '↑';
+    document.body.appendChild(backToTopBtn);
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Calculadora de consumo de água
+    const calculateBtn = document.getElementById('calculate-btn');
+    if (calculateBtn) {
+        calculateBtn.addEventListener('click', calculateWaterUsage);
+    }
+    
+    // Quiz interativo
+    setupQuiz();
+    
+    // Animação para os cards de estatísticas (se houver)
+    const statCards = document.querySelectorAll('.stat-card');
+    if (statCards.length > 0) {
+        statCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+            card.classList.add('fade-in');
+        });
+        
+        // Contador animado para as estatísticas
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+            let count = 0;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.round(count).toLocaleString() + 
+                                  (stat.textContent.includes('%') ? '%' : '');
+            }, 16);
+        });
+    }
+});
+
+// Função para criar partículas de água
+function createWaterParticles() {
+    const particlesContainer = document.querySelector('.water-particles');
+    if (!particlesContainer) return;
+    
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('water-particle');
+        
+        // Tamanho aleatório
+        const size = Math.random() * 10 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posição aleatória
+        particle.style.left = `${Math.random() * 100}%`;
+        
+        // Duração e delay aleatórios
+        const duration = Math.random() * 10 + 5;
+        const delay = Math.random() * 5;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Função para calcular o uso de água - VERSÃO CORRIGIDA
+function calculateWaterUsage() {
+    const showerTime = parseInt(document.getElementById('shower-time').value) || 0;
+    const showerFrequency = parseInt(document.getElementById('shower-frequency').value) || 0;
+    const faucetTime = parseInt(document.getElementById('faucet-time').value) || 0;
+    const toiletFlushes = parseInt(document.getElementById('toilet-flushes').value) || 0;
+    const dishwasherUses = parseInt(document.getElementById('dishwasher-uses').value) || 0;
+    const washingMachineUses = parseInt(document.getElementById('washing-machine-uses').value) || 0;
+    
+    // Cálculos aproximados (em litros)
+    const showerUsage = showerTime * 6 * showerFrequency; // 6 litros por minuto no chuveiro
+    const faucetUsage = faucetTime * 6 * 7; // 6 litros por minuto na torneira, 7 dias
+    const toiletUsage = toiletFlushes * 10 * 7; // 10 litros por descarga, 7 dias
+    const dishwasherUsage = dishwasherUses * 20; // 20 litros por uso
+    const washingMachineUsage = washingMachineUses * 100; // 100 litros por uso
+    
+    const totalUsage = showerUsage + faucetUsage + toiletUsage + dishwasherUsage + washingMachineUsage;
+    
+    // Exibir resultado
+    document.querySelector('.water-amount').textContent = `${totalUsage.toLocaleString()} litros/semana`;
+    
+    // Dar dicas baseadas no consumo
+    const tipsElement = document.querySelector('.water-tips');
+    let tipsHTML = '<h4>Dicas para economizar água:</h4><ul>';
+    
+    if (showerUsage > 300) {
+        tipsHTML += '<li>Reduza o tempo no chuveiro para economizar água</li>';
+    }
+    
+    if (faucetUsage > 100) {
+        tipsHTML += '<li>Feche a torneira ao escovar os dentes ou ensaboar a louça</li>';
+    }
+    
+    if (totalUsage > 1000) {
+        tipsHTML += '<li>Considere coletar água da chuva para atividades não potáveis</li>';
+    }
+    
+    tipsHTML += '<li>Conserte vazamentos - uma torneira pingando pode desperdiçar 45 litros por dia</li>';
+    tipsHTML += '<li>Use a máquina de lavar apenas com carga completa</li>';
+    tipsHTML += '</ul>';
+    
+    tipsElement.innerHTML = tipsHTML;
+}
+
+// Função para configurar o quiz - VERSÃO CORRIGIDA (única)
+function setupQuiz() {
+    const quizOptions = document.querySelectorAll('.quiz-option');
+    const quizResult = document.querySelector('.quiz-result');
+    
+    if (quizOptions.length === 0) return;
+    
+    quizOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remover seleções e estilos anteriores
+            quizOptions.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Selecionar esta opção
+            this.classList.add('selected');
+            
+            // Verificar resposta
+            const isCorrect = this.getAttribute('data-correct') === 'true';
+            
+            // Destacar visualmente a resposta correta
+            quizOptions.forEach(opt => {
+                if (opt.getAttribute('data-correct') === 'true') {
+                    opt.classList.add('correct');
+                }
+            });
+            
+            // Destacar visualmente a resposta incorreta se for o caso
+            if (!isCorrect) {
+                this.classList.add('incorrect');
+            }
+            
+            // Mostrar resultado
+            quizResult.classList.remove('correct', 'incorrect');
+            
+            if (isCorrect) {
+                quizResult.textContent = 'Correto! Parabéns pela conscientização!';
+                quizResult.classList.add('correct');
+            } else {
+                quizResult.textContent = 'Resposta incorreta. Tente novamente!';
+                quizResult.classList.add('incorrect');
+            }
+            
+            quizResult.style.display = 'block';
         });
     });
 }
