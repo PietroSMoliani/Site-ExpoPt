@@ -467,56 +467,6 @@ function setupWaterCalculator() {
     
     calculateBtn.addEventListener('click', calculateWaterUsage);
 }
-
-// Calcular o consumo de água
-function calculateWaterUsage() {
-    const shower = parseInt(document.getElementById('shower').value) || 0;
-    const flush = parseInt(document.getElementById('flush').value) || 0;
-    const dishes = parseInt(document.getElementById('dishes').value) || 0;
-    const laundry = parseInt(document.getElementById('laundry').value) || 0;
-    
-    // Cálculos baseados em médias de consumo
-    const showerUsage = shower * 6 * 15; // 15 litros por minuto no chuveiro
-    const flushUsage = flush * 15; // 15 litros por descarga
-    const dishesUsage = dishes * 3; // 3 litros por lavagem de louça (mão)
-    const laundryUsage = laundry * 100; // 100 litros por lavagem de roupa
-    
-    const totalUsage = showerUsage + flushUsage + dishesUsage + laundryUsage;
-    
-    // Exibir resultado
-    const resultElement = document.querySelector('.water-amount');
-    if (resultElement) {
-        resultElement.textContent = `${totalUsage} litros`;
-    }
-    
-    // Exibir dicas com base no consumo
-    showWaterTips(totalUsage);
-}
-
-// Mostrar dicas de economia de água com base no consumo
-function showWaterTips(totalUsage) {
-    const tipsElement = document.querySelector('.water-tips');
-    if (!tipsElement) return;
-    
-    let tipsHTML = '<h4>Dicas para economizar água:</h4><ul>';
-    
-    if (totalUsage > 200) {
-        tipsHTML += '<li>Feche a torneira ao escovar os dentes ou se ensaboar</li>';
-        tipsHTML += '<li>Prefira duchas rápidas a banhos demorados</li>';
-    }
-    
-    if (totalUsage > 150) {
-        tipsHTML += '<li>Conserte vazamentos em torneiras e canos</li>';
-        tipsHTML += '<li>Use a máquina de lavar apenas com carga completa</li>';
-    }
-    
-    tipsHTML += '<li>Reaproveite a água da chuva para regar plantas</li>';
-    tipsHTML += '<li>Use varal em vez de secadora quando possível</li>';
-    tipsHTML += '</ul>';
-    
-    tipsElement.innerHTML = tipsHTML;
-}
-
 // Inicializar o quiz
 function initQuiz() {
     if (quizQuestions.length === 0) return;

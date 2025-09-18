@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
-        }
+        } 
     });
     
     // Botão de voltar ao topo
@@ -27,8 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
             backToTopBtn.classList.remove('visible');
         }
     });
+    
     // Quiz interativo
     setupQuiz();
+    
+    // Configurar a calculadora de água
+    setupWaterCalculator();
     
     // Animação para os cards de estatísticas (se houver)
     const statCards = document.querySelectorAll('.stat-card');
@@ -86,7 +90,8 @@ function createWaterParticles() {
         particlesContainer.appendChild(particle);
     }
 }
-// Função para configurar o quiz - VERSÃO CORRIGIDA (única)
+
+// Função para configurar o quiz
 function setupQuiz() {
     const quizOptions = document.querySelectorAll('.quiz-option');
     const quizResult = document.querySelector('.quiz-result');
@@ -133,11 +138,6 @@ function setupQuiz() {
         });
     });
 }
-// Script para a calculadora de consumo de água
-document.addEventListener('DOMContentLoaded', function() {
-    // Configurar a calculadora de água
-    setupWaterCalculator();
-});
 
 // Configurar a calculadora de consumo de água
 function setupWaterCalculator() {
@@ -146,41 +146,42 @@ function setupWaterCalculator() {
     
     calculateBtn.addEventListener('click', calculateWaterUsage);
 }
-
-// Calcular o consumo de água - VERSÃO CORRIGIDA para seus campos atuais
+// Versão mais segura com fallbacks
 function calculateWaterUsage() {
-    // Obter valores dos campos (usando os IDs corretos do seu HTML)
-    const showerTime = parseInt(document.getElementById('shower-time').value) || 0;
-    const teethBrushing = document.getElementById('teeth-brushing').value;
-    const washingMachine = parseInt(document.getElementById('washing-machine').value) || 0;
-    
-    // Cálculos baseados em médias de consumo
-    const showerUsagePerMinute = 12; // 12 litros por minuto no chuveiro
-    const showerUsage = showerTime * 7 * showerUsagePerMinute; // 7 dias na semana
-    
-    // Escovar dentes: 5 litros por minuto com torneira aberta
-    let teethUsage = 0;
-    if (teethBrushing === 'yes') {
-        // Considerando 2 escovações por dia, 2 minutos cada
-        teethUsage = 5 * 2 * 2 * 7; // 5L/min × 2 vezes/dia × 2 min × 7 dias
+    try {
+        // Obter valores com fallback seguro
+        const showerTime = parseInt(document.getElementById('shower-time')?.value || 0);
+        const teethBrushing = document.getElementById('teeth-brushing')?.value || 'no';
+        const washingMachine = parseInt(document.getElementById('washing-machine')?.value || 0);
+        
+        console.log('Valores obtidos:', {showerTime, teethBrushing, washingMachine});
+        
+        // Resto do código de cálculo...
+        const showerUsagePerMinute = 12;
+        const showerUsage = showerTime * 7 * showerUsagePerMinute;
+        
+        let teethUsage = 0;
+        if (teethBrushing === 'yes') {
+            teethUsage = 5 * 2 * 2 * 7;
+        }
+        
+        const washingMachineUsage = washingMachine * 100;
+        const totalUsage = showerUsage + teethUsage + washingMachineUsage;
+        
+        // Exibir resultado
+        const resultElement = document.querySelector('.water-amount');
+        if (resultElement) {
+            resultElement.textContent = `${totalUsage.toLocaleString()} litros`;
+        }
+        
+        showWaterTips(totalUsage);
+        
+    } catch (error) {
+        console.error('Erro ao calcular consumo:', error);
+        alert('Erro ao calcular. Verifique o console para detalhes.');
     }
-    
-    // Máquina de lavar: 100 litros por lavagem
-    const washingMachineUsage = washingMachine * 100;
-    
-    const totalUsage = showerUsage + teethUsage + washingMachineUsage;
-    
-    // Exibir resultado
-    const resultElement = document.querySelector('.water-amount');
-    if (resultElement) {
-        resultElement.textContent = `${totalUsage.toLocaleString()} litros`;
-    }
-    
-    // Exibir dicas com base no consumo
-    showWaterTips(totalUsage);
 }
-
-// Mostrar dicas de economia de água com base no consumo
+// FUNÇÃO ADICIONADA: Mostrar dicas de economia de água
 function showWaterTips(totalUsage) {
     const tipsElement = document.querySelector('.water-tips');
     if (!tipsElement) return;
@@ -207,8 +208,7 @@ function showWaterTips(totalUsage) {
     tipsHTML += '</ul>';
     
     // Adicionar comparação com média brasileira
-    const averageBrazilian = 154000; // litros por ano (aproximadamente 2950 por semana)
-    const weeklyAverage = 2950;
+    const weeklyAverage = 2950; // litros por semana (média brasileira)
     
     tipsHTML += `<div class="consumption-comparison">
         <p>Sua média semanal: <strong>${totalUsage.toLocaleString()} litros</strong></p>
